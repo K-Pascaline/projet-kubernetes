@@ -1,0 +1,35 @@
+# helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+# helm repo update
+# helm install nginx-ingress ingress-nginx/ingress-nginx --namespace default --set controller.replicaCount=2
+
+# helm uninstall nginx-ingress ingress-nginx/ingress-nginx 
+
+#Certificat auto-signé openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt 
+#Créer un secret Kubernetes pour stocker les clés kubectl create secret tls my-tls-secret --key tls.key --cert tls.crt -n appscore 
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: exemple
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true" 
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - pascaline.com
+    secretName: my-tls-secret
+  ingressClassName: nginx
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service-web
+            port:
+              number: 80
