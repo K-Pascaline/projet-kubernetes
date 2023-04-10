@@ -1,0 +1,55 @@
+
+
+
+		==================================================================
+                      Les membres du groupe et les responsabilités effectives
+		==================================================================
+
+
+
+========================================================
+		***TSHIMANGA Yves
+   		------------------
+- création du cluster kubernetes sur microsoft azure
+- transfert de tous nos API de notre application dans microsoft azure
+- installation du helm
+==============================================================
+
+
+==================================================================
+		***DIKOBE Alain Bruno
+  		 ---------------------- 
+- création des fichiers dockerfiles
+- création du fichier dockercompose
+- générer les api dans dockerdesktop
+- installation du helm pour notre ingress
+==================================================================
+
+
+====================================================================
+		***KIHEOU Essolizam Ebe-Neser Pascaline
+   		----------------------------------------
+# Bilan de santé
+ #les fichiers(config.yaml; 
+  - Mise en place du Metrics server
+  - Mise en place du kube-state-metrics
+  - Mise en place du système de surveillance Prometheus pour collecte des métriques
+  - Mise en place d'un outil de visualisation de données Grafana pour afficher les métriques collectées par Prometheus
+    #helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+    #helm repo update
+    #helm install prometheus prometheus-community/kube-prometheus-stack
+    #kubectl get pods -n default
+
+    #helm install grafana grafana/grafana
+    #kubectl port-forward service/grafana -n default 3000:80
+
+# Sécurité 
+- gestion du certificat Openssl auto-signé qui est ensuite associé a notre ingress
+
+# logs
+(le lien me permettant d'installer kibana)
+***https://devopscube.com/setup-efk-stack-on-kubernetes/
+
+ - Mise en place du serveur elasticsearch pour stocker les journaux
+ - Mise en place de l'outil kibana pour la visualisation des données et les tableaux de bord
+
